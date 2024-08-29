@@ -33,13 +33,14 @@ list_of_files = [
     "main.py",
     "params.yaml",
     "requirements.txt",
-    "setup.py",
     "notebook/main.ipynb",
     ".gitignore",
     ".dvcignore",
     "fastapi_app.py",
-    "gradio_app.py",
-    "Dockerfile"
+    "streamlit_app.py",
+    "Dockerfile",
+    ".env",
+    "pyproject.toml"
 ]
 
 for filepath in list_of_files:
