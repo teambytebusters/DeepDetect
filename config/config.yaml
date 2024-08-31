@@ -1,0 +1,8 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_url_full: https://www.kaggle.com/c/16880/datadownload/dfdc_train_all.zip
+  source_url_chunk: https://www.kaggle.com/c/16880/datadownload/dfdc_train_part_00.zip
+  local_data_file: artifacts/data_ingestion/data.zip
+  unzip_dir: artifacts/data_ingestion
