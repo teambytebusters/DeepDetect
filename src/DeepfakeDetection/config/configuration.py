@@ -1,7 +1,6 @@
 from DeepfakeDetection.constants import PARAMS_FILE_PATH, CONFIG_FILE_PATH
 from DeepfakeDetection.utils.common import read_yaml, create_directories
-from DeepfakeDetection.entity.config_entity import (DataIngestionConfig)
-import os
+from DeepfakeDetection.entity.config_entity import (DataIngestionConfig, DataPreprocessingConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -29,3 +28,21 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+    
+    def get_data_preprocessing_config(self) -> DataPreprocessingConfig:
+        config = self.config.data_preprocessing
+        
+        create_directories([config.root_dir])
+
+        data_preprocessing_config = DataPreprocessingConfig(
+            root_dir=config.root_dir,
+            data_path=config.data_path,
+            output_dir=config.output_dir,
+            max_frames=self.params.max_frames,
+            target_size=self.params.target_size,
+            min_size=self.params.min_size,
+            min_neighbors=self.params.min_neighbors,
+            scale_factor=self.params.scale_factor
+        )
+
+        return data_preprocessing_config

@@ -5,7 +5,7 @@ from DeepfakeDetection import logger
 STAGE_NAME = "Data Ingestion stage"
 
 
-class DataIngestionTrainingPipeline:
+class DataIngestionPipeline:
 
     def main(self):
         config = ConfigurationManager()
@@ -19,7 +19,7 @@ class DataIngestionTrainingPipeline:
 if __name__ == '__main__':
     try:
         logger.info(f"\n\n >>>>>> stage {STAGE_NAME} started <<<<<<\n\n")
-        obj = DataIngestionTrainingPipeline()
+        obj = DataIngestionPipeline()
         obj.main()
         logger.info(f"\n\n>>>>>> stage {STAGE_NAME} completed <<<<<<\n\n")
     except Exception as e:

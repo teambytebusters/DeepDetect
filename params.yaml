@@ -1,1 +1,6 @@
-k: v
+# preprocessing
+max_frames: 32
+target_size: [224, 224]
+scale_factor: 1.1
+min_neighbors: 5
+min_size: [30,30]

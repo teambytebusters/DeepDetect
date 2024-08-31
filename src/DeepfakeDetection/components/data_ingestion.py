@@ -1,7 +1,6 @@
 import os
 import zipfile
 import gdown
-from sklearn.model_selection import train_test_split
 from DeepfakeDetection import logger
 from DeepfakeDetection.entity.config_entity import DataIngestionConfig
 

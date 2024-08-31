@@ -3,12 +3,12 @@ from box.exceptions import BoxValueError
 import yaml
 from DeepfakeDetection import logger
 import json
-import joblib
+import h5py
+import numpy as np
 from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
 from typing import Any
-import base64
 
 
 @ensure_annotations
@@ -79,29 +79,35 @@ def load_json(path: Path) -> ConfigBox:
 
 
 @ensure_annotations
-def save_bin(data: Any, path: Path):
-    """save binary file
+def save_h5py(data: Any, path: Path, dataset_name="data", compression="gzip"):
+    """save data to an HDF5 file using h5py
     Args:
-        data (Any): data to be saved as binary
-        path (Path): path to binary file
+        data (Any): data to be saved
+        path (Path): path to the HDF5 file
+        dataset_name (str): name of the dataset in the HDF5 file
+        compression (str): compression method (default: "gzip")
     """
-    joblib.dump(value=data, filename=path)
-    logger.info(f"binary file saved at: {path}")
+    with h5py.File(path, 'w') as h5f:
+        h5f.create_dataset(dataset_name, data=np.array(data), compression=compression)
+
+    logger.info(f"HDF5 file saved at: {path}")
 
 
 @ensure_annotations
-def load_bin(path: Path) -> Any:
-    """load binary data
-
+def load_h5py(path: Path, dataset_name="data") -> Any:
+    """load data from an HDF5 file using h5py
     Args:
-        path (Path): path to binary file
-
+        path (Path): path to the HDF5 file
+        dataset_name (str): name of the dataset in the HDF5 file
     Returns:
-        Any: object stored in the file
+        Any: data loaded from the file
     """
-    data = joblib.load(path)
-    logger.info(f"binary file loaded from: {path}")
+    with h5py.File(path, 'r') as h5f:
+        data = np.array(h5f[dataset_name])
+
+    logger.info(f"HDF5 file loaded from: {path}")
     return data
+
 
 @ensure_annotations
 def get_size_in_kbs(path: Path) -> str:
@@ -115,4 +121,3 @@ def get_size_in_kbs(path: Path) -> str:
     """
     size_in_kb = round(os.path.getsize(path)/1024)
     return f"~ {size_in_kb} KB"
-
