@@ -1,12 +1,9 @@
 import os
 import zipfile
 import gdown
-import shutil
 from sklearn.model_selection import train_test_split
 from DeepfakeDetection import logger
 from DeepfakeDetection.entity.config_entity import DataIngestionConfig
-
-
 
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig):
