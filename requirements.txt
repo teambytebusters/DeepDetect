@@ -10,10 +10,11 @@ opencv-python       # Image and video processing
 pillow              # Image processing and manipulation
 ffmpeg-python       # Video processing using FFmpeg
 
-# Environment and Configuration Management
+# Data donwload, Environment and Configuration Management
 python-dotenv       # Environment variables management
-dvc                 # Data Version Control for managing datasets
+dvc                 # Data Version Control for pipeline versioning
 requests            # HTTP requests for APIs and web scraping
+gdown               # download gdrive files
 
 # Machine Learning Workflow and Model Management
 mlflow              # Experiment tracking and model management
